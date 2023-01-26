@@ -42,3 +42,8 @@ En este caso lo sigo en Laravel, otros los he seguido en Symfony aunque el lo en
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+#### Next step
+
+[Cap 7](https://www.udemy.com/course/usa-laravel-y-crea-un-spa-con-vue-intertia-y-tailwind-css/learn/lecture/31415638#overview)
