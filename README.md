@@ -31,14 +31,6 @@ Esto es parte de los cursos que imparte en Udemy [JuanDMGon](https://www.udemy.c
 
 En este caso lo sigo en Laravel, otros los he seguido en Symfony aunque el lo enseñaba en Laravel.
 
-
-
-
-
-
-
-
-
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
