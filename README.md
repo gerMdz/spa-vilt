@@ -17,12 +17,26 @@ Es para integrar distintos componentes de front y back
 
 ## Comandos
 
-### Instalar Laravel
+### Instalar componentes
+#### Laravel
 ```
 composer create-project laravel/laravel carpeta-de-destino
 ```
 
+#### Jetstream
+```
+composer require laravel/jetstream
+```
+#### Crear model (-m migración -f factory -c controller)
+```
+php artisan make:model Skill -mfc
+php artisan make:model Project -mfc
+```
 
+#### Creando la base de datos
+```
+php artisan migrate:fresh
+```
 
 
 ## Learning Laravel
@@ -38,4 +52,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 #### Next step
 
-[Cap 7](https://www.udemy.com/course/usa-laravel-y-crea-un-spa-con-vue-intertia-y-tailwind-css/learn/lecture/31415638#overview)
+[Cap 9](https://www.udemy.com/course/usa-laravel-y-crea-un-spa-con-vue-intertia-y-tailwind-css/learn/lecture/31415642#overview)
