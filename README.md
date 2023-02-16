@@ -37,19 +37,36 @@ php artisan make:model Project -mfc
 ```
 php artisan migrate:fresh
 ```
+#### Recreando la base de datos, borrando datos y aplicando seeders
+```
+php artisan migrate:fresh --seed
+```
+#### Ejecutando solo los seeders en la base de datos
+```
+php artisan db:seed
+```
+
+#### Comprobando los datos cargados en la base de datos
+```
+php artisan tinker
+ App\Models\Skill::all();
+ App\Models\Project::all();
+```
 
 
 ## Learning Laravel
 
 Esto es parte de los cursos que imparte en Udemy [JuanDMGon](https://www.udemy.com/user/juandavidmezagonzlez/)
 
-En este caso lo sigo en Laravel, otros los he seguido en Symfony aunque el lo enseñaba en Laravel.
+En este caso lo sigo en Laravel, otros los he seguido en Symfony aunque él lo enseñaba en Laravel.
 
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+Este proyecto también está licenciado bajo la [MIT license](https://opensource.org/licenses/MIT). 
+
 
 #### Next step
 
-[Cap 9](https://www.udemy.com/course/usa-laravel-y-crea-un-spa-con-vue-intertia-y-tailwind-css/learn/lecture/31415642#overview)
+[Cap 11](https://www.udemy.com/course/usa-laravel-y-crea-un-spa-con-vue-intertia-y-tailwind-css/learn/lecture/31415708#questions/17164796)
