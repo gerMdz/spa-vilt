@@ -15,6 +15,8 @@ Es para integrar distintos componentes de front y back
 
 [Vue](https://vuejs.org/guide/introduction.html)
 
+[jetstream](https://jetstream.laravel.com/3.x/introduction.html)
+
 ## Comandos
 
 ### Instalar componentes
@@ -24,7 +26,7 @@ composer create-project laravel/laravel carpeta-de-destino
 ```
 
 #### Jetstream
-```
+```bash
 composer require laravel/jetstream
 ```
 #### Crear model (-m migración -f factory -c controller)
@@ -44,6 +46,12 @@ php artisan migrate:fresh --seed
 #### Ejecutando solo los seeders en la base de datos
 ```
 php artisan db:seed
+```
+
+#### Instalando Jetstream
+##### Elegimos inerti
+```bash
+php artisan jetstream:install inertia
 ```
 
 #### Comprobando los datos cargados en la base de datos
@@ -69,4 +77,4 @@ Este proyecto también está licenciado bajo la [MIT license](https://opensource
 
 #### Next step
 
-[Cap 11](https://www.udemy.com/course/usa-laravel-y-crea-un-spa-con-vue-intertia-y-tailwind-css/learn/lecture/31415708#questions/17164796)
+[Cap 12](https://www.udemy.com/course/usa-laravel-y-crea-un-spa-con-vue-intertia-y-tailwind-css/learn/lecture/31415710#questions/17832372)
