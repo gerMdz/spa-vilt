@@ -1,35 +1,78 @@
 <script setup>
 import {Head, Link} from '@inertiajs/vue3';
+import {defineComponent} from "vue";
+import JetApplicationMark from '../Components/ApplicationMark.vue'
+import Section from "../Custom/Section.vue";
 
-defineProps({
-    canLogin: Boolean,
-    canRegister: Boolean,
+defineProps(
+    {
+        canLogin: Boolean,
+        canRegister: Boolean,
+    }
+)
+defineComponent({
 
-});
+    components: {
+        Head,
+        Link,
+        JetApplicationMark,
+        Section
+    },
+
+
+})
+;
 </script>
 
 <template>
-    <header class="bg-gray-800 pt-16 h-screen px-72">
-        <div class="h-2/3 flex flex-wrap content-between border-gray-600 pb-36" >
+    <Head title="Bienvenidos"/>
+    <div class="
+        grid grid-cols-2
+        text-right py-10 px-72
+        bg-gray-800 text-gray-300
+    ">
+        <div>
+            <jet-application-mark class="h-12 w-auto"></jet-application-mark>
+        </div>
+        <div v-if="canLogin">
+            <Link v-if="$page.props.user" :href="route('dashboard')" class="text-sm underline">
+                Dashboard
+            </Link>
+
+            <template v-else>
+                <Link :href="route('login')" class="text-base underline">
+                    Ingresar
+                </Link>
+
+                <Link v-if="canRegister" :href="route('register')" class="text-base underline place-self-end ml-4">
+                    Registrarse
+                </Link>
+            </template>
+        </div>
+    </div>
+
+    <Section class="bg-gray-800 pt-16 h-screen">
+        <div class="h-2/3 flex flex-wrap content-between border-gray-600 pb-36">
             <p class="border-b-2 font-bold border-gray-400 pb-3 text-2xl text-gray-300 uppercase">
                 Hola: Estamos en esta gran página.</p>
         </div>
-    </header>
-    <section class="bg-gray-200 text-gray-800 px-72 py-10 h-screen">
+    </Section>
+    <Section class="bg-gray-200 text-gray-800 h-screen">
         <h2 class="text-6xl font-bold pt-3">Habilidades</h2>
-    </section>
-    <section class="bg-gray-600 text-gray-200 px-72 py-10 h-screen">
-        <h2 class="text-6xl font-bold pt-3">Proyectos</h2></section>
-    <footer class="
-    flex justify-between py-10 px-72 bg-gray-800 text-gray-300 text-xl
+    </Section>
+    <Section class="bg-gray-600 text-gray-200 h-screen">
+        <h2 class="text-6xl font-bold pt-3">Proyectos</h2>
+    </Section>
+    <Section class="
+    flex justify-between bg-gray-800 text-gray-300 text-xl
 ">
         <p>&copy; gerMdz 2023</p>
         <div class="flex justify-evenly items-center">
             GitHub
         </div>
-    </footer>
+    </Section>
 
-    <Head title="Welcome"/>
+
 
 
 </template>
