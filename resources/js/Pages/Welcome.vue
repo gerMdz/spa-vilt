@@ -1,7 +1,8 @@
 <script setup>
-import {Head, Link} from '@inertiajs/vue3';
 import {defineComponent} from "vue";
+import {Head, Link} from '@inertiajs/vue3';
 import JetApplicationMark from '../Components/ApplicationMark.vue'
+import JetButton from '../Components/PrimaryButton.vue'
 import Section from "../Custom/Section.vue";
 
 defineProps(
@@ -16,6 +17,7 @@ defineComponent({
         Head,
         Link,
         JetApplicationMark,
+        JetButton,
         Section
     },
 
@@ -55,13 +57,41 @@ defineComponent({
         <div class="h-2/3 flex flex-wrap content-between border-gray-600 pb-36">
             <p class="border-b-2 font-bold border-gray-400 pb-3 text-2xl text-gray-300 uppercase">
                 Hola: Estamos en esta gran página.</p>
+            <div class="h-1/3 flex  items-end border-b-2 border-gray-500">
+                <p class="font-bold  mr-5 text-gray-400 text-xl">
+                    ¿Conocer más?</p>
+                <jet-button class="bg-green-400 rounded font-bold text-sm text-gray-800
+                hover:bg-green-600">
+                    Hablemos.
+                </jet-button>
+            </div>
         </div>
+
+        <div class="h-1/3 animate-pulse  mt-3 text-gray-300 text-center text-9xl">
+            <a href="#skill" class="text-white">
+                &#8675;
+            </a>
+        </div>
+
+
     </Section>
-    <Section class="bg-gray-200 text-gray-800 h-screen">
+    <Section id="skill" class="bg-gray-200 text-gray-800 h-screen">
         <h2 class="text-6xl font-bold pt-3">Habilidades</h2>
+        <div class="flex justify-center mt-10">
+            <jet-button class="bg-indigo-400 rounded font-bold text-sm text-green-600
+                hover:bg-indigo-700">
+                Veamos.
+            </jet-button>
+        </div>
     </Section>
     <Section class="bg-gray-600 text-gray-200 h-screen">
         <h2 class="text-6xl font-bold pt-3">Proyectos</h2>
+        <div class="flex justify-center mt-10">
+            <jet-button class="bg-purple-400 rounded font-bold text-sm text-gray-800
+                hover:bg-purple-800">
+                Hay varios.
+            </jet-button>
+        </div>
     </Section>
     <Section class="
     flex justify-between bg-gray-800 text-gray-300 text-xl
@@ -71,8 +101,6 @@ defineComponent({
             GitHub
         </div>
     </Section>
-
-
 
 
 </template>
