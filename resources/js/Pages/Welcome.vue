@@ -4,11 +4,13 @@ import {Head, Link} from '@inertiajs/vue3';
 import JetApplicationMark from '../Components/ApplicationMark.vue'
 import JetButton from '../Components/PrimaryButton.vue'
 import Section from "../Custom/Section.vue";
+import Habilidades from "../Custom/Habilidades.vue";
 
 defineProps(
     {
         canLogin: Boolean,
         canRegister: Boolean,
+        skills: Boolean,
     }
 )
 defineComponent({
@@ -18,7 +20,8 @@ defineComponent({
         Link,
         JetApplicationMark,
         JetButton,
-        Section
+        Section,
+        Habilidades
     },
 
 
@@ -60,6 +63,7 @@ defineComponent({
             <div class="h-1/3 flex  items-end border-b-2 border-gray-500">
                 <p class="font-bold  mr-5 text-gray-400 text-xl">
                     ¿Conocer más?</p>
+                <br/>
                 <jet-button class="bg-green-400 rounded font-bold text-sm text-gray-800
                 hover:bg-green-600">
                     Hablemos.
@@ -76,7 +80,17 @@ defineComponent({
 
     </Section>
     <Section id="skill" class="bg-gray-200 text-gray-800 h-screen">
-        <h2 class="text-6xl font-bold pt-3">Habilidades</h2>
+        <h2 class="text-6xl font-bold pt-3">Habilidades propias</h2>
+
+        <div class="grid grid-cols-2">
+                <div v-for="skill in skills">
+                    <Habilidades :background="skill.color" >
+                        {{skill.name}}
+                    </Habilidades>
+
+                </div>
+        </div>
+
         <div class="flex justify-center mt-10">
             <jet-button class="bg-indigo-400 rounded font-bold text-sm text-green-600
                 hover:bg-indigo-700">
@@ -86,6 +100,7 @@ defineComponent({
     </Section>
     <Section class="bg-gray-600 text-gray-200 h-screen">
         <h2 class="text-6xl font-bold pt-3">Proyectos</h2>
+        <br/>
         <div class="flex justify-center mt-10">
             <jet-button class="bg-purple-400 rounded font-bold text-sm text-gray-800
                 hover:bg-purple-800">
@@ -93,6 +108,7 @@ defineComponent({
             </jet-button>
         </div>
     </Section>
+
     <Section class="
     flex justify-between bg-gray-800 text-gray-300 text-xl
 ">
