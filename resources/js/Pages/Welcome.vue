@@ -1,32 +1,44 @@
-<script setup>
-import {defineComponent} from "vue";
-import {Head, Link} from '@inertiajs/vue3';
+<script>
+import {defineComponent} from 'vue'
+import {Head, Link} from '@inertiajs/vue3'
+
 import JetApplicationMark from '../Components/ApplicationMark.vue'
 import JetButton from '../Components/PrimaryButton.vue'
-import Section from "../Custom/Section.vue";
-import Habilidades from "../Custom/Habilidades.vue";
 
-defineProps(
-    {
-        canLogin: Boolean,
-        canRegister: Boolean,
-        skills: Boolean,
-    }
-)
-defineComponent({
 
+import Section from '../Custom/Section.vue'
+import Skill from '../Custom/Habilidades.vue'
+import Project from '../Custom/Projects.vue'
+import * as heroIcons from "@heroicons/vue/24/solid";
+
+
+export default defineComponent({
     components: {
         Head,
         Link,
         JetApplicationMark,
         JetButton,
         Section,
-        Habilidades
+        Skill,
+        Project,
     },
 
+    props: {
+        canLogin: Boolean,
+        canRegister: Boolean,
+        skills: Object,
+        projects: Object,
+
+    },
+
+    data() {
+        return {
+            heroIcons: heroIcons
+        }
+
+    }
 
 })
-;
 </script>
 
 <template>
@@ -83,12 +95,12 @@ defineComponent({
         <h2 class="text-6xl font-bold pt-3">Habilidades propias</h2>
 
         <div class="grid grid-cols-2">
-                <div v-for="skill in skills">
-                    <Habilidades :background="skill.color" >
-                        {{skill.name}}
-                    </Habilidades>
+            <div v-for="skill in skills">
+                <Skill :background="skill.color">
+                    {{ skill.name }}
+                </Skill>
 
-                </div>
+            </div>
         </div>
 
         <div class="flex justify-center mt-10">
@@ -100,7 +112,14 @@ defineComponent({
     </Section>
     <Section class="bg-gray-600 text-gray-200 h-screen">
         <h2 class="text-6xl font-bold pt-3">Proyectos</h2>
-        <br/>
+
+        <div v-for="(project, index) in projects">
+            <Project :title="project.title" :description="project.description" :color="project.color">
+                <component :is="heroIcons[project.icon_name+'Icon']"></component>
+            </Project>
+
+        </div>
+
         <div class="flex justify-center mt-10">
             <jet-button class="bg-purple-400 rounded font-bold text-sm text-gray-800
                 hover:bg-purple-800">
@@ -114,7 +133,9 @@ defineComponent({
 ">
         <p>&copy; gerMdz 2023</p>
         <div class="flex justify-evenly items-center">
-            GitHub
+            <Link href="#" target="_blank" class="border-b pb-1 px-2 hover:bg-gray-50">
+                GitHub
+            </Link>
         </div>
     </Section>
 

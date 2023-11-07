@@ -1,9 +1,9 @@
-<script setup>
-
-     const background = '';
-
-
-
+<script>
+     export default {
+         props: [
+             'background'
+         ]
+     }
 </script>
 
 <template>

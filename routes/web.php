@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Project;
 use App\Models\Skill;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +21,8 @@ Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'skills' => Skill::all()
+        'skills' => Skill::all(),
+        'projects' => Project::all()
     ]);
 });
 
