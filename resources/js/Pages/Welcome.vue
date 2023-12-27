@@ -4,6 +4,8 @@ import {Head, Link} from '@inertiajs/vue3'
 
 import JetApplicationMark from '../Components/ApplicationMark.vue'
 import JetButton from '../Components/PrimaryButton.vue'
+import JetModal from '../Components/Modal.vue'
+import JetInput from '../Components/TextInput.vue'
 
 
 import Section from '../Custom/Section.vue'
@@ -18,6 +20,8 @@ export default defineComponent({
         Link,
         JetApplicationMark,
         JetButton,
+        JetModal,
+        JetInput,
         Section,
         Skill,
         Project,
@@ -30,13 +34,24 @@ export default defineComponent({
         projects: Object,
 
     },
+    methods: {
+        submit() {
+            this.form.post(route('contacto'));
+        }
+    },
 
     data() {
         return {
-            heroIcons: heroIcons
+            heroIcons: heroIcons,
+            contacting: null,
+            form: this.$inertia.form({
+                'email': '',
+                'message': ''
+            })
         }
 
-    }
+    },
+
 
 })
 </script>
@@ -77,7 +92,9 @@ export default defineComponent({
                     ¿Conocer más?</p>
                 <br/>
                 <jet-button class="bg-green-400 rounded font-bold text-sm text-gray-800
-                hover:bg-green-600">
+                hover:bg-green-600"
+                            @click="contacting=true"
+                >
                     Hablemos.
                 </jet-button>
             </div>
@@ -105,7 +122,7 @@ export default defineComponent({
 
         <div class="flex justify-center mt-10">
             <jet-button class="bg-indigo-400 rounded font-bold text-sm text-green-600
-                hover:bg-indigo-700">
+                hover:bg-indigo-700" @click="contacting=true">
                 Veamos.
             </jet-button>
         </div>
@@ -122,7 +139,7 @@ export default defineComponent({
 
         <div class="flex justify-center mt-10">
             <jet-button class="bg-purple-400 rounded font-bold text-sm text-gray-800
-                hover:bg-purple-800">
+                hover:bg-purple-800" @click="contacting=true">
                 Hay varios.
             </jet-button>
         </div>
@@ -140,6 +157,32 @@ export default defineComponent({
     </Section>
 
 
+    <jet-modal :show="contacting" closeable="closeable" @close="contacting = null">
+        <div class="bg-gray-50 shadow-2xl p-8">
+            <p class="text-gray-600 text-2xl font-extrabold text-center">
+                Cuentame algo más
+            </p>
+            <form @submit.prevent="submit" class="flex flex-col items-center p-16">
+                <jet-input class="px-5 py-3 w-96 border border-gray-600 rounded"
+                           type="email"
+                           name="email"
+                           placeholder="Tú email"
+                           v-model="form.email"
+                >
+                </jet-input>
+                <textarea class="px-5 py-3 w-96 border border-gray-600 rounded mt-5"
+                          name="message" placeholder="Los detalles"
+                          v-model="form.message"
+                >
+
+                </textarea>
+                <jet-button class="px-5 py-3 mt-5 w-96 bg-purple-400 justify-center
+                                    rounded-xl text-sm">
+                    Enviar
+                </jet-button>
+            </form>
+        </div>
+    </jet-modal>
 </template>
 
 <style>

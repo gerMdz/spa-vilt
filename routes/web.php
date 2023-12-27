@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactoController;
 use App\Models\Project;
 use App\Models\Skill;
 use Illuminate\Foundation\Application;
@@ -26,6 +27,7 @@ Route::get('/', function () {
     ]);
 });
 
+Route::post('contacto', [ContactoController::class, 'contacto'])->name('contacto');
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
