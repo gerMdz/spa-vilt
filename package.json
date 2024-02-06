@@ -23,6 +23,7 @@
         "vue-loader": "^16.8.3"
     },
     "dependencies": {
+        "caniuse-lite": "^1.0.30001584",
         "postcss-import": "^15.1.0"
     }
 }
