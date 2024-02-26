@@ -19,6 +19,7 @@ class ContactoController extends Controller
             ->send(new MensajeContacto($request->email, $request->message))
         ;
 
-        return redirect('/');
+        return redirect('/')
+            ->with('contacted', true);
     }
 }

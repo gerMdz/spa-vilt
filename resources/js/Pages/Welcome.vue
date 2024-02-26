@@ -97,7 +97,7 @@ export default defineComponent({
                 hover:bg-green-600"
                             @click="contacting=true"
                 >
-                    Hablemos.
+                    {{ $page.props.flash.contacted ? 'Gracias':'Hablemos' }}.
                 </jet-button>
             </div>
         </div>
@@ -125,7 +125,8 @@ export default defineComponent({
         <div class="flex justify-center mt-10">
             <jet-button class="bg-indigo-400 rounded font-bold text-sm text-green-600
                 hover:bg-indigo-700" @click="contacting=true">
-                Veamos.
+                {{ $page.props.flash.contacted ? 'Gracias':'Veamos.' }}.
+
             </jet-button>
         </div>
     </Section>
@@ -142,7 +143,7 @@ export default defineComponent({
         <div class="flex justify-center mt-10">
             <jet-button class="bg-purple-400 rounded font-bold text-sm text-gray-800
                 hover:bg-purple-800" @click="contacting=true">
-                Hay varios.
+                {{ $page.props.flash.contacted ? 'Gracias':'Hay varios' }}.
             </jet-button>
         </div>
     </Section>
@@ -160,7 +161,25 @@ export default defineComponent({
 
 
     <jet-modal :show="contacting" closeable="closeable" @close="contacting = null">
-        <div class="bg-gray-50 shadow-2xl p-8">
+        <div
+            v-if="$page.props.flash.contacted"
+            class="bg-green-400 shadow-2xl p-8 text-center font-bold"
+        >
+            <section class="flex items-center px-44 py-6 justify-between">
+                <p class="text-xl m-5 text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="h-24 w-24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75a.75.75 0 0 1 .75-.75 2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282m0 0h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23H5.904m10.598-9.75H14.25M5.904 18.5c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 0 1-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 9.953 4.167 9.5 5 9.5h1.053c.472 0 .745.556.5.96a8.958 8.958 0 0 0-1.302 4.665c0 1.194.232 2.333.654 3.375Z"/>
+                    </svg>
+                </p>
+                <p class="text-5xl font-bold m-2">
+
+                    Gracias</p>
+            </section>
+            <p class="text-xl m-2">Dentro de poco estaremos en contacto</p>
+        </div>
+        <div v-else class="bg-gray-50 shadow-2xl p-8">
             <p class="text-gray-600 text-2xl font-extrabold text-center">
                 Cuentame algo más
             </p>
@@ -172,7 +191,7 @@ export default defineComponent({
                            v-model="form.email"
                 >
                 </jet-input>
-                <jet-input-error :message="form.errors.email" />
+                <jet-input-error :message="form.errors.email"/>
 
 
                 <textarea class="px-5 py-3 w-96 border border-gray-600 rounded mt-5"
@@ -181,10 +200,10 @@ export default defineComponent({
                 >
 
                 </textarea>
-                <jet-input-error :message="form.errors.message" />
+                <jet-input-error :message="form.errors.message"/>
                 <jet-button class="px-5 py-3 mt-5 w-96 bg-purple-400 justify-center
                                     rounded-xl text-sm"
-                :disabled="form.processing">
+                            :disabled="form.processing">
                     <span class="animate-spin mr-1" v-show="form.processing">
                         &#9696;
                     </span>
