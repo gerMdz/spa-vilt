@@ -77,4 +77,4 @@ Este proyecto también está licenciado bajo la [MIT license](https://opensource
 
 #### Next step
 
-[Cap 26](https://www.udemy.com/course/usa-laravel-y-crea-un-spa-con-vue-intertia-y-tailwind-css/learn/lecture/31415750#questions)
+[Cap 27](https://www.udemy.com/course/usa-laravel-y-crea-un-spa-con-vue-intertia-y-tailwind-css/learn/lecture/31415752#questions)

@@ -181,7 +181,7 @@ export default defineComponent({
         </div>
         <div v-else class="bg-gray-50 shadow-2xl p-8">
             <p class="text-gray-600 text-2xl font-extrabold text-center">
-                Cuentame algo más
+                Contame algo más
             </p>
             <form @submit.prevent="submit" class="flex flex-col items-center p-16">
                 <jet-input class="px-5 py-3 w-96 border border-gray-600 rounded"
