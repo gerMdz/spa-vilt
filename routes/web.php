@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ContactoController;
+use App\Mail\MensajeContacto;
 use App\Models\Project;
 use App\Models\Skill;
 use Illuminate\Foundation\Application;
@@ -26,6 +28,7 @@ Route::get('/', function () {
     ]);
 });
 
+Route::post('contacto', [ContactoController::class, 'contacto'])->name('contacto');
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -34,4 +37,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+});
+
+Route::get('mail', function (){
+    return new MensajeContacto('test@test.com', 'Por favor, necesito más datos');
 });

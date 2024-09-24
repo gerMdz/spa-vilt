@@ -4,6 +4,7 @@ export default {
         'title',
         'description',
         'color',
+        'icon_name'
     ]
 }
 

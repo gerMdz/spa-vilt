@@ -6,13 +6,13 @@
         "serve": "vite preview"
     },
     "devDependencies": {
-        "@heroicons/vue": "^2.0.18",
-        "@inertiajs/vue3": "^1.0.0",
-        "@tailwindcss/forms": "^0.5.2",
-        "@tailwindcss/typography": "^0.5.2",
-        "@vitejs/plugin-vue": "^4.3.4",
-        "autoprefixer": "^10.4.7",
-        "axios": "^0.21",
+        "@heroicons/vue": "^2.1.3",
+        "@inertiajs/vue3": "^1.0.16",
+        "@tailwindcss/forms": "^0.5.7",
+        "@tailwindcss/typography": "^0.5.13",
+        "@vitejs/plugin-vue": "^4.6.2",
+        "autoprefixer": "^10.4.19",
+        "axios": "^0.28.1",
         "laravel-mix": "^6.0.6",
         "laravel-vite-plugin": "^0.4.0",
         "lodash": "^4.17.19",
@@ -23,6 +23,7 @@
         "vue-loader": "^16.8.3"
     },
     "dependencies": {
+        "caniuse-lite": "^1.0.30001621",
         "postcss-import": "^15.1.0"
     }
 }
