@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Skill;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rules\In;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class SkillController extends Controller
@@ -13,7 +13,26 @@ class SkillController extends Controller
     {
 
         return Inertia::render('Skills/All', [
-            'habilidades' => Skill::all()
+            'habilidades' => Skill::all(),
+            'coloresDisponibles' => Skill::getAvailableBackgroundColors()
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => [
+                'required',
+                'max:255',
+                Rule::unique(Skill::class)
+            ],
+            'color' => [
+                'required',
+                'in:' . implode(',', Skill::getAvailableBackgroundColors())
+            ]
+        ]);
+        Skill::create($request->all());
+        return redirect()->route('habilidades.index');
+
     }
 }
