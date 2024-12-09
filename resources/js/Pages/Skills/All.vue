@@ -57,7 +57,7 @@
                     </div>
                 </jet-modal>
 
-                <table v-if="habilidades.length > 0" class="w-full">
+                <table v-if="habilidades.length > 0" class="w-full text-left">
                     <thead
                         class="border-b-2 border-gray-300 text-indigo-600"
                     >

@@ -7,8 +7,76 @@
         </template>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <table v-if="proyectos.length > 0" class="w-full">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 text-right">
+                <jet-button
+                    class="p-3 border-2 border-blue-500 text-blue-500 bg-blue-100 font-bold rounded-xl
+                    hover:bg-blue-200"
+                    @click="acting =  true"
+                >
+                    Agregar +
+                </jet-button>
+                <jet-modal :show="acting" closeable="closeable" @close="acting = null">
+
+                    <div class="bg-gray-50 shadow-2xl p-8">
+
+                        <form @submit.prevent="submit" class="flex flex-col items-center p-16">
+                            <jet-input class="px-5 py-3 w-96 border border-gray-600 rounded"
+                                       type="text"
+                                       name="name"
+                                       placeholder="Proyecto"
+                                       v-model="form.title"
+                            >
+                            </jet-input>
+                            <jet-input-error :message="form.errors.title"/>
+                            <jet-input class="px-5 py-3 w-96 border border-gray-600 rounded mt-5"
+                                       type="text"
+                                       name="description"
+                                       placeholder="Descripción"
+                                       v-model="form.description"
+                            >
+                            </jet-input>
+                            <jet-input-error :message="form.errors.description"/>
+
+                            <select class="w-96 border border-gray-600 rounded mt-5"
+                                    v-model="form.color"
+                            >
+                                <option value="">Seleccione color</option>
+                                <option v-for="color in coloresDisponibles" :value="color"
+                                >
+                                    {{color}}
+                                </option>
+
+                            </select>
+                            <jet-input-error :message="form.errors.color"/>
+
+                            <select class="w-96 border border-gray-600 rounded mt-5"
+                                    v-model="form.icon_name"
+                            >
+                                <option value="">Seleccione icon</option>
+                                <option v-for="icon in iconsDisponibles" :value="icon"
+                                >
+                                    {{icon}}
+                                </option>
+
+                            </select>
+                            <jet-input-error :message="form.errors.icon_name"/>
+
+
+
+                            <jet-button class="px-5 py-3 mt-5 w-96 bg-purple-400 justify-center
+                                    rounded-xl text-sm"
+                                        :disabled="form.processing">
+                    <span class="animate-spin mr-1" v-show="form.processing">
+                        &#9696;
+                    </span>
+                                <span v-show="!form.processing">
+                    Guardar
+                    </span>
+                            </jet-button>
+                        </form>
+                    </div>
+                </jet-modal>
+                <table v-if="proyectos.length > 0" class="w-full text-left">
                     <thead
                         class="border-b-2 border-gray-300 text-indigo-600"
                     >
@@ -78,10 +146,16 @@ import PrimaryButton from '../../Components/PrimaryButton.vue'
 import DangerButton from "../../Components/DangerButton.vue";
 import SecondaryButton from "../../Components/SecondaryButton.vue";
 import * as heroIcons from "@heroicons/vue/24/solid";
+import JetModal from "../../Components/Modal.vue";
+import JetInput from "../../Components/TextInput.vue";
+import JetInputError from "../../Components/InputError.vue";
+import JetButton from "../../Components/PrimaryButton.vue";
+
 
 
 export default {
     components: {
+        JetButton, JetInputError, JetInput, JetModal,
         PrimaryButton,
         DangerButton,
         AppLayout,
@@ -90,14 +164,34 @@ export default {
     methods: {
         componentName(name) {
             return () => import(`./${name}`)
+        },
+        submit(){
+            this.form.submit('post', route('proyectos.store'), {
+                onSuccess: () => {
+                    this.form.reset('title');
+                    this.form.reset('description');
+                    this.form.reset('color');
+                    this.form.reset('icon_name');
+                    this.acting = null
+                }
+            })
         }
     },
     props: {
         proyectos: Object,
+        coloresDisponibles: Object,
+        iconsDisponibles: Object
     },
     data() {
         return {
             heroIcons: heroIcons,
+            acting: null,
+            form: this.$inertia.form({
+                'title': '',
+                'description': '',
+                'color': '',
+                'icon_name': ''
+            })
         }
 
     },
